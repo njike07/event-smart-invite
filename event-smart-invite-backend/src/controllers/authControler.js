@@ -9,9 +9,7 @@ const AuthController = {};
 // Login admin
 AuthController.login = async (req, res) => {
     const { telephone, password } = req.body;
-    if (!telephone || !password) {
-        return res.status(400).json({ message: 'Téléphone et mot de passe requis' });
-    }
+    console.log("Login attempt for:", telephone); 
 
     try {
         const admin = await Admin.findByTelephone(telephone);
@@ -24,19 +22,19 @@ AuthController.login = async (req, res) => {
 
         res.json({ token, admin: { id: admin.id, nom: admin.username, telephone: admin.telephone } });
     } catch (err) {
+        console.error("LOGIN ERROR:", err); 
         res.status(500).json({ error: err.message });
     }
 };
 
-// Créer un admin (optionnel)
+// Créer un admin
 AuthController.createAdmin = async (req, res) => {
     const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ message: 'Username et mot de passe requis' });
-
     try {
         const admin = await Admin.create(username, password);
         res.status(201).json({ message: 'Admin créé', adminId: admin.insertId });
     } catch (err) {
+        console.error("CREATE ERROR:", err); 
         res.status(500).json({ error: err.message });
     }
 };

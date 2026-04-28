@@ -21,15 +21,15 @@ app.use('/uploads', express.static('uploads'));
 
 
 const authRoutes = require('./src/routes/authRoutes');
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 const inviteRoutes = require('./src/routes/inviteRoutes');
-app.use('/invites', inviteRoutes);
+app.use('/api/invites', inviteRoutes);
 const marieRoutes = require('./src/routes/marieRoutes');
-app.use('/maries', marieRoutes);
+app.use('/api/maries', marieRoutes);
 const albumRoutes = require('./src/routes/albumRoutes');
-app.use('/albums', albumRoutes);
+app.use('/api/albums', albumRoutes);
 const photographeRoutes = require('./src/routes/photographeRoutes');
-app.use('/photographe', photographeRoutes);
+app.use('/api/photographe', photographeRoutes);
 
 
 app.get('/', (req, res) => {
